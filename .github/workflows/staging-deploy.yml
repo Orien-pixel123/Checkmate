@@ -6,6 +6,7 @@ on:
 
 jobs:
   docker-build-and-push-client:
+    if: github.repository == 'bluewave-labs/Checkmate'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -36,6 +37,7 @@ jobs:
         run: docker push ghcr.io/bluewave-labs/checkmate:frontend-staging
 
   docker-build-and-push-server:
+    if: github.repository == 'bluewave-labs/Checkmate'
     needs: docker-build-and-push-client
     runs-on: ubuntu-latest
     steps:
@@ -72,6 +74,7 @@ jobs:
         run: docker push ghcr.io/bluewave-labs/checkmate:mongo-staging
 
   deploy-to-staging:
+    if: github.repository == 'bluewave-labs/Checkmate'
     needs: docker-build-and-push-server
     runs-on: ubuntu-latest
     steps:
